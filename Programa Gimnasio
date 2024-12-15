@@ -1,0 +1,64 @@
+package OmegaUpDev;
+
+import java.util.Scanner;
+
+public class Gimnasio {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese el número de gimnasios a comparar: ");
+        int N = scanner.nextInt();
+
+        int mejorGimnasio = 0;
+        double maxPuntuacion = Double.MIN_VALUE;
+
+        for (int i = 1; i <= N; i++) {
+            System.out.println("Ingrese los datos para el gimnasio " + i + ":");
+
+            System.out.print("Precio mensual: ");
+            double precio = scanner.nextDouble();
+
+            System.out.print("Calificación promedio: ");
+            double calificacionPromedio = scanner.nextDouble();
+
+            System.out.print("Número de reseñas: ");
+            int numeroReseñas = scanner.nextInt();
+
+            // Calculamos la puntuación general
+            double puntuacion = calcularPuntuacionGeneral(precio, calificacionPromedio, numeroReseñas);
+
+            // Verificamos si esta puntuación es la mayor
+            if (puntuacion > maxPuntuacion) {
+                maxPuntuacion = puntuacion;
+                mejorGimnasio = i;
+            }
+        }
+
+        System.out.println("Mejor gimnasio: " + mejorGimnasio);
+        scanner.close();
+    }
+
+    // Función para calcular la puntuación general
+    public static double calcularPuntuacionGeneral(double precio, double calificacionPromedio, int numeroReseñas) {
+        double pesoPrecio = 0.5;
+        double pesoCalificacion = 0.3;
+        double pesoReseñas = 0.2;
+
+        // Calculamos la puntuación
+        double puntuacion = (pesoPrecio * precio) +
+                            (pesoCalificacion * calificacionPromedio) +
+                            (pesoReseñas * Math.log10(numeroReseñas + 1));
+        return puntuacion;
+    }
+}
+
+
+
+
+        
+        
+        
+        
+    
+    
+
