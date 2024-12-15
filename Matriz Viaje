@@ -1,0 +1,133 @@
+package Matrix;
+
+public class Matrices {
+
+    final static int cantidad_categorias = 4, cantidad_destinos = 50;
+
+    public static void main(String[] args) {
+        int[][] registro = new int[cantidad_categorias][cantidad_destinos];
+        String[] localidades = new String[cantidad_destinos];
+        generarMatrizDePrueba(registro, localidades);
+        cantidadPasajerosPorLocalidad(registro, localidades);
+        cantidadPasajerosPorCategoria(registro);//queda para ustedes! :)
+        localidadesSinPasajes(registro, localidades);
+        //categoriaSinPasajes(registro);//queda para ustedes! :)
+        localidadConMenosPasajeros(registro, localidades);
+        localidadesConMasDeMilPasajeros(registro, localidades);//queda para ustedes! :)
+    }
+
+    public static void generarMatrizDePrueba(int[][] registro, String[] localidades) {
+        int[][] matrizPrueba = {
+            /*Categoría 1*/{100, 50, 0, 20, 500, 0, 60, 90, 200, 0, 30, 0, 0, 400, 50, 10, 0, 0, 300, 20, 100, 0, 70, 10, 60, 80, 90, 0, 150, 20, 50, 0, 0, 100, 60, 20, 50, 0, 400, 50, 60, 30, 0, 70, 10, 90, 80, 0, 50, 100},
+            /*Categoría 2*/ {200, 0, 0, 30, 600, 20, 70, 80, 100, 0, 50, 20, 0, 0, 20, 30, 50, 0, 200, 10, 100, 10, 0, 20, 80, 0, 40, 0, 0, 40, 100, 50, 30, 0, 70, 60, 20, 0, 300, 40, 10, 50, 20, 30, 50, 0, 20, 90, 40, 10},
+            /*Categoría 3*/ {50, 100, 0, 40, 400, 10, 60, 50, 70, 20, 30, 40, 20, 50, 0, 40, 0, 10, 100, 40, 30, 20, 60, 30, 50, 20, 20, 0, 100, 30, 30, 10, 40, 60, 0, 50, 10, 20, 200, 60, 0, 40, 30, 50, 60, 30, 10, 30, 0, 50},
+            /*Categoría 4*/ {0, 20, 0, 0, 100, 30, 0, 20, 30, 50, 0, 10, 30, 10, 20, 0, 40, 20, 50, 0, 10, 30, 40, 20, 0, 30, 10, 0, 40, 10, 0, 10, 20, 0, 40, 0, 20, 10, 50, 0, 10, 20, 30, 40, 50, 30, 10, 0, 20, 40}
+        };
+        for (int categoria = 0; categoria < cantidad_categorias; categoria++) {
+            for (int destino = 0; destino < cantidad_destinos; destino++) {
+                registro[categoria][destino] = matrizPrueba[categoria][destino];
+            }
+        }
+        for (int i = 0; i < cantidad_destinos; i++) {
+            localidades[i] = "Destino " + i;
+        }
+    }
+
+    private static void cantidadPasajerosPorLocalidad(int[][] registro, String[] localidades) {
+        System.out.println("===================\n cantidadPasajerosPorLocalidad\n===================");
+        for (int j = 0; j < cantidad_destinos; j++) {
+            int cantidadViajes = 0;
+            for (int i = 0; i < cantidad_categorias; i++) {
+                cantidadViajes += registro[i][j];
+            }
+            System.out.println("Viajes a la ciudad " + localidades[j] + " " + cantidadViajes);
+        }
+    }
+
+    private static void localidadesSinPasajes(int[][] registro, String[] localidades) {
+        
+    for (int i=0; i<cantidad_categorias; i++){
+             int j=0;
+    
+             while(j<cantidad_destinos && registro [i][j]==0){
+            j++;
+        
+            }
+            
+        if(j==cantidad_destinos){
+            System.out.println("Categoria:" + i+ "no tiene pasajes vendidos");
+        }
+            
+        System.out.println("localidades sin pasaje" +j+ "");
+    
+            }
+    }
+    private static void localidadConMenosPasajeros(int[][] registro, String[] localidades) {
+        int menor = 9000;
+        int localidadMenor = -1;
+        for (int j = 0; j < cantidad_destinos; j++) {
+            int cantidadViajes = 0;
+            for (int i = 0; i < cantidad_categorias; i++) {
+                cantidadViajes += registro[i][j];
+            }
+            if (cantidadViajes < menor) {
+                menor = cantidadViajes;
+                localidadMenor = j;
+            }
+        }
+        System.out.println("Localidad menor: " + localidades[localidadMenor]);
+    }
+
+    private static void localidadesConMasDeMilPasajeros(int[][] registro, String[] localidades) {
+        int pasajesVendidos;
+        for (int j = 0; j < cantidad_destinos; j++) {
+            pasajesVendidos = 0;
+            for (int i = 0; i < cantidad_categorias; i++) {
+                pasajesVendidos += registro[i][j];
+
+            }
+
+            if (pasajesVendidos > 1000)
+            System.out.println("Localidades con mas de mil pasajes vendidos" + localidades[j] + "" + pasajesVendidos);
+
+        }
+
+       
+    }
+    private static void cantidadPasajerosPorCategoria(int[][] registro) {
+        int cantidadPasajeroscategoria;
+
+        for (int i = 0; i < cantidad_categorias; i++) {
+            cantidadPasajeroscategoria = 0;
+            for (int j = 0; j < cantidad_destinos; j++) {
+                cantidadPasajeroscategoria += registro[i][j];
+
+            }
+
+            System.out.println("Cantidad Pasajeros por Categoria es " + i + "" + cantidadPasajeroscategoria);
+
+        }
+
+        
+    } 
+        
+        
+        private static void categoriaSinPasajes(int[][] registro) {
+          
+          for(int i=0; i<cantidad_categorias;i++){
+              int j=0;
+              
+            while(i<cantidad_categorias && registro[i][j]==0){ // i>cantidad_categorias para que mi while de 3 (yo se son 3 categorias) vueltas buscando un cero en la matriz
+                 j++;
+                  
+              }
+               if(i==cantidad_categorias)
+                   System.out.println("Categorias sin vender" + i +"");
+          }
+              
+          }
+    
+
+}
+
+
