@@ -1,0 +1,25 @@
+package OmegaUpDev;
+import java.util.Random;
+public class Dados {
+    
+    public static void main(String[] args) {
+        Random rnd = new Random(100);
+        for (int i=0;i<10;i++) {
+            System.out.println("Tirada" + (i+1) + ":" +(rnd.nextInt(6)+1));
+            
+            //i+1 es necesario pq esta inicializada en 0 en for//
+            //6+1 es para que en vez de hacer de 0 a 5 lo haga de 1 a 6//
+        }
+    }
+    
+}
+/* Tirada1:2
+Tirada2:5
+Tirada3:5
+Tirada4:1
+Tirada5:2
+Tirada6:1
+Tirada7:3
+Tirada8:3
+Tirada9:2
+Tirada10:2*/
