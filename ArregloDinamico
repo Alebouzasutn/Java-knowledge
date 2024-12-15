@@ -1,0 +1,99 @@
+package Arreglo;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class ArregloDinamico {
+
+    // Declaro Constantes:
+    
+    static int tamLogico = 10;
+    static int N = 100; 
+    static int[] A = new int[N]; //arreglo
+
+    /* tamLogico: Representa el tamaño "lógico" del arreglo, es decir,cuántos elementos están ocupados.
+       N: Es la capacidad máxima del arreglo (tamaño físico).
+       A: Es el arreglo principal con capacidad máxima N.*/
+    public static void main(String[] args) {
+
+        //Llama al método CargarArreglo para inicializar los valores del arreglo A.//
+        System.out.print("Inicializar arreglo");
+        CargarArreglo(A);
+
+        /*Llama al método insertarFinal con el valor 44 como argumento.
+        insertarFinal devuelve 1 si pudo agregar el número al arreglo, o 0 si no había espacio.
+         El if verifica si el resultado es igual a 1.*/
+        if (insertarFinal(A, 44) == 1);
+        {
+            insertarFinal(A, 23);
+
+            System.out.print("Insertar al final");
+            imprimirArreglo(A);
+
+        }
+
+        if (insertarPpio(A, 44) == 1) {
+            System.out.println("Insertar al principio");
+
+        }
+    }
+
+    private static void CargarArreglo(int[] A) {
+        Random rd = new Random();
+        for (int i = 0; i < tamLogico; i++) {
+            A[i] = rd.nextInt(150);
+            System.out.println("Ingrese valor" + i);
+            A[i] = rd.nextInt(150);
+//Lee un número ingresado por el usuario y lo guarda en la posición i del arreglo A//
+//**En este caso se modifico a Random**//
+
+        }
+
+    }
+
+    private static void imprimirArreglo(int[] A) {
+        for (int i = 0; i < tamLogico; i++) {
+            System.out.println("A[" + i + "]: " + A[i]);
+        }
+    }
+
+    private static int insertarFinal(int[] A, int i) {
+
+        if (tamLogico < N) {
+            A[tamLogico++] = i;
+
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    private static int insertarPpio(int[] A, int valor) {
+
+        if (tamLogico < N) {
+            for (int i = tamLogico; i > 0; i--) {
+                A[i] = A[i - 1];
+            }
+            /* Aca se debe recorrer desde el FINAL del arreglo al principio, por eso el for empieza
+            i=tamLogico; y termina en i mayor a cero, i -- porque luego se resta entonces se pone decrementar*/
+            
+            /*Dentro del bucle, me paro en i del arreglo y el valor de cada posición se mueve una posición 
+            hacia la derecha con i -1. 
+Esto asegura que el valor en la última posición se "empuje" hacia la siguiente y así 
+sucesivamente hasta la posición 1 y asi hago lugar en el principio para el nuevo valor.*/
+            A[0] = valor;
+           
+            //Aca indico arreglo con el indice en 0 para asi poder asignarle el nuevo valor//
+            
+            tamLogico++;
+            
+           // Dado que agregue un valor en el principio del arreglo, debo "agrandar" tam logico ++
+            return 1;
+
+        } else {
+            return 0;
+        }
+
+    }
+
+}
