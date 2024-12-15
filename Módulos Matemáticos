@@ -1,0 +1,52 @@
+package Modulos;
+
+import java.util.Scanner;
+
+public class GuiadoEsqueleto {
+
+    public static void main(String[] args) {
+        int n1, n2, veces;
+        
+        Scanner sc = new Scanner(System.in);
+        veces = sc.nextInt();
+        
+        for (int i=0;i<veces;i++){
+            n1 = sc.nextInt();
+            n2 = sc.nextInt();
+        
+        if (esMultiplo(n1, n2)) {
+            System.out.println("La suma: " + suma(n1, n2));
+        } else {
+            System.out.println("La potencia: " + potencia(n1, n2));
+
+        }
+    }
+
+
+    }
+    
+      public static boolean esMultiplo(int n1,int n2){
+        if (n1%n2 == 0) {
+            return true;
+        } else {
+                return false;
+
+        }
+    }
+
+      private static int suma(int n1, int n2){
+          return n1+n2;
+          
+      }
+
+      private static int potencia(int n1, int n2){
+          int acumulador = 1;
+          for(int i=0; i<n2; i++){
+              acumulador*=n1;
+              
+          }
+        return acumulador;
+      }
+}
+                                               
+
