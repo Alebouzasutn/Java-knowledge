@@ -1,0 +1,17 @@
+package Arreglo;
+
+public class MetodosCaracteres {
+
+    
+    public static void main(String[] args) {
+
+        String fruta = "banana";
+        char letra = fruta.charAt(0); //devuelve primer letra
+        System.out.print("Imprime letra" + (letra));
+
+        int largo = fruta.length();
+        char ultima = fruta.charAt(largo-1); //me devuelve la ultima letra
+        /*Debo restar 1 a largo para obtener la ULTIMA letra ya que cuenta desde 0
+        no desde 1 en letras tambien
+        */
+        
